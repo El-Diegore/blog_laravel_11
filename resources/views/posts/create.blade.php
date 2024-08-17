@@ -1,20 +1,28 @@
 <x-layout meta-title="Create new post" meta-description="Foem to create a new post">
 
     <h1>
-        Create new post
+        {{__('Create new post')}}
     </h1>
     <form method="POST" action="{{ route('posts.store') }} ">
         @csrf
         <label for="">
-            Title
-            <input name="title" type="text">
+            {{__('Title')}}
+            <input name="title" type="text" value="{{old('title')}}">
+            @error('title')
+                <br>
+                <small style="color: red">{{$message}} </small>
+            @enderror
         </label>
         <label for="">
-            Body
-            <textarea name="body" id="" cols="30" rows="10"></textarea>
+            {{__('Body')}}
+            <textarea name="body" id="" cols="30" rows="10">{{old('body')}}</textarea>
+            @error('body')
+            <br>
+            <small style="color: red">{{$message}} </small>
+        @enderror
         </label>
-        <button type="submit">Send</button>
+        <button type="submit">{{__('Send')}}</button>
     </form>
-    <a href="{{  route('posts.index') }} ">Back</a>
+    <a href="{{  route('posts.index') }} ">{{__('Back')}} </a>
     
     </x-layout>

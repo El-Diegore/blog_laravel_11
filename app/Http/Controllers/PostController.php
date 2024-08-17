@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,10 +23,17 @@ class PostController extends Controller
         return view('posts.create');
     }
     public function store(Request $request){
+        $request->validate([
+            'title' => ['required','min:4'],
+            'body' => ['required','min:4']
+        ]);
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
+        
+        session()->flash('status', 'mensaje de prueba');
+        
         return to_route('posts.index');
     }
 }
