@@ -33,10 +33,13 @@ class PostController extends Controller
         return view('posts.edit', ['post'=> $post]);
     }
     public function update(SavePostRequest $request, Post $post){
-      /*   $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save(); */
         $post->update($request->validated());
         
-        return to_route('posts.show', $post)->with('status', 'Post updated');    }
+        return to_route('posts.show', $post)->with('status', 'Post updated');    
+    }
+    public function destroy(Post $post){
+        $post->delete();
+        
+        return to_route('posts.index', $post)->with('status', 'Post deleted');    
+    }
 }
