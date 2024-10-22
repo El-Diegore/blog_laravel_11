@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$metaTitle ?? 'Default title' }} </title>
     <meta name="description" content=" {{$metaDescription ?? 'Default description'}} " />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    @vite(['resources/css/app.css'])
 </head>
 
-<body>
+<body class="flex flex-col h-screen bg-slate-100 selection:bg-sky-600 selection:text-justify">
     <x-nav/>
 
     @session('status')
@@ -29,6 +31,7 @@
             </h3>
         </div>
     @endisset
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 
 </body>
 
